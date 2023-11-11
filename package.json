@@ -14,11 +14,12 @@
     "msw": "2.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet": "6.1.0",
+    "react-helmet-async": "1.3.0",
     "react-router-dom": "6.18.0",
     "styled-components": "6.1.1"
   },
   "devDependencies": {
-    "vite-plugin-favicon": "1.0.8",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -29,6 +30,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "prettier": "3.0.3",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-favicon": "1.0.8"
   }
 }
