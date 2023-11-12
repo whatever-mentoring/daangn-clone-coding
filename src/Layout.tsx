@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import { Outlet } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -12,13 +13,14 @@ const LayoutWrapper = styled.div`
 `;
 
 function Layout() {
-  const helmetContext = {}
+  const helmetContext = {};
   return (
     <HelmetProvider context={helmetContext}>
       <Header />
       <LayoutWrapper>
         <Outlet />
       </LayoutWrapper>
+      <Footer />
     </HelmetProvider>
   );
 }
