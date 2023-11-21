@@ -51,10 +51,10 @@ async function enableMocking() {
     return;
   }
   const { worker } = await import('./mocks/browser');
-  return worker.start();
+  return worker.start({ onUnhandledRequest: 'bypass' });
 }
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
