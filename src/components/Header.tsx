@@ -29,15 +29,15 @@ const NavBox = styled.div`
   gap: 56px;
 `;
 
-const NavLink = styled.div<{ active: boolean }>`
+const NavLink = styled.div<{ $active: boolean }>`
   text-decoration: none;
   font-size: 16px;
   font-weight: 600;
   line-height: 0;
   cursor: pointer;
-  color: ${(props) => (props.active ? '#FF6F0F' : '')};
+  color: ${(props) => (props.$active ? '#FF6F0F' : '')};
   &:hover {
-    color: ${(props) => (props.active ? '' : '#868b94')};
+    color: ${(props) => (props.$active ? '' : '#868b94')};
   }
 `;
 
@@ -73,7 +73,7 @@ export default function Header() {
                 navigate(nav.path);
                 setActiveNavLink(nav.path);
               }}
-              active={activeNavLink === nav.path}
+              $active={activeNavLink === nav.path}
             >
               {nav.text}
             </NavLink>
