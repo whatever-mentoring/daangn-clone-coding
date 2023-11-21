@@ -125,7 +125,7 @@ export default function Footer() {
           </ul>
           <ul style={{ display: 'flex', gap: '24px' }}>
             {SnsList.map((sns) => (
-              <SnsLink alt={sns.name} src={sns.path} />
+              <SnsLink key={sns.id} alt={sns.name} src={sns.path} />
             ))}
           </ul>
         </NavContainer>

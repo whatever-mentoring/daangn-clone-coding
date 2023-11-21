@@ -10,6 +10,7 @@ const LayoutWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 `;
 
 function Layout() {
