@@ -6,6 +6,7 @@ import Tag from './components/Tag';
 import Card from './components/Card';
 import { useQuery } from 'react-query';
 import { getArticles } from '../api/ArticlesController';
+import { useState } from 'react';
 
 const BlogWrapper = styled.div`
   display: flex;
@@ -37,17 +38,25 @@ const CardBox = styled.div`
 `;
 
 function BlogPage() {
-  const { data, isLoading, error } = useQuery({
+
+  const {
+    data: cardData,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['articles'],
     queryFn: getArticles,
   });
+
+  const [activeTag, setActiveTag] = useState('전체');
 
   if (isLoading) return 'Loading...';
 
   if (error) return 'An error has occurred: ' + error;
 
-  const mainCardData = data.data[0];
-  const cardData = data.data;
+  if (!cardData || cardData.length === 0) return 'No data available';
+
+  const mainCardData = cardData[0];
 
   const categories = [
     { id: 0, text: '전체' },
@@ -68,18 +77,21 @@ function BlogPage() {
           thumbnailImg={mainCardData.thumbnailImg}
         />
         <TagBox>
-          {categories.map((tag) => (
-            <Tag key={tag.id} text={tag.text} />
+          {categories.map((category) => (
+            <Tag
+              key={category.id}
+              text={category.text}
+              onClick={() => setActiveTag(category.text)}
+              isActive={category.text === activeTag}
+            />
           ))}
         </TagBox>
         <CardBox>
-          {cardData.map((card: any) => (
-            <Card
-              key={card.id}
-              title={card.title}
-              subTitle={card.subTitle}
-              catergories={card.categories}
-              thumbnailImg={card.thumbnailImg}
+          {cardData.map((card) => (
+            <Card 
+              key={card.articleId} 
+              card={card} 
+              isActive={card.categories[0] === activeTag || '전체' === activeTag }
             />
           ))}
         </CardBox>

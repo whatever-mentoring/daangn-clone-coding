@@ -1,12 +1,10 @@
 import styled from 'styled-components';
+import { ArticlesData } from '../../data/type';
 
-const CardWrapper = styled.div`
-  /* width: 100%; */
-  display: flex;
+const CardWrapper = styled.div<{ $isActive: boolean }>`
+  display: ${(props) => (props.$isActive ? 'flex' : 'none')};
   flex-direction: column;
   cursor: pointer;
-  /* margin: 0 48px; */
-
   &:hover {
     transform: translateY(-8px);
     transition: all 0.3s ease-in-out;
@@ -50,16 +48,23 @@ const SmallTag = styled.div`
   margin-top: 24px;
 `;
 
-export default function Card(props: any) {
+interface CardProps {
+  card: ArticlesData;
+  isActive: boolean;
+}
+
+export default function Card({ card, isActive }: CardProps) {
   return (
-    <CardWrapper>
-      <CardImg alt="card-img" src={props.thumbnailImg} />
+    <CardWrapper $isActive={isActive}>
+      <CardImg alt="card-img" src={card.thumbnailImg} />
       <CardBody>
-        <h3>{props.title}</h3>
-        <p>{props.subTitle}</p>
+        <h3>{card.title}</h3>
+        <p>{card.subTitle}</p>
       </CardBody>
       <SmallTagBox>
-        <SmallTag>{props.catergories}</SmallTag>
+        {card.categories.map((category) => (
+          <SmallTag>{category}</SmallTag>
+        ))}
       </SmallTagBox>
     </CardWrapper>
   );
