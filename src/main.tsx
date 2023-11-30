@@ -7,6 +7,7 @@ import CompanyPage from './CompanyPage/CompanyPage';
 import CulturePage from './CulturePage/CulturePage';
 import ServicePage from './ServicePage/ServicePage';
 import BlogPage from './BlogPage/BlogPage';
+import PostPage from './PostPage/PostPage';
 import JobsPage from './JobsPage/JobsPage';
 import ErrorPage from './ErrorPage/ErrorPage';
 import Layout from './Layout';
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: '/blog/',
         element: <BlogPage />,
+      },
+      {
+        path: '/blog/:id',
+        element: <PostPage />,
       },
       {
         path: '/jobs/',

@@ -7,6 +7,7 @@ import Card from './components/Card';
 import { useQuery } from 'react-query';
 import { getArticles } from '../api/ArticlesController';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const BlogWrapper = styled.div`
   display: flex;
@@ -38,6 +39,7 @@ const CardBox = styled.div`
 `;
 
 function BlogPage() {
+  const navigate = useNavigate();
 
   const {
     data: cardData,
@@ -72,9 +74,8 @@ function BlogPage() {
       </Helmet>
       <BlogWrapper>
         <MainCard
-          title={mainCardData.title}
-          subTitle={mainCardData.subTitle}
-          thumbnailImg={mainCardData.thumbnailImg}
+          mainCard={mainCardData}
+          onClick={()=>navigate(`/blog/${mainCardData.articleId}`)}
         />
         <TagBox>
           {categories.map((category) => (
@@ -92,6 +93,7 @@ function BlogPage() {
               key={card.articleId} 
               card={card} 
               isActive={card.categories[0] === activeTag || '전체' === activeTag }
+              onClick={()=>navigate(`/blog/${card.articleId}`)}
             />
           ))}
         </CardBox>

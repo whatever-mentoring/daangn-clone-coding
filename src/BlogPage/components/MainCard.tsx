@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ArticlesData } from '../../data/type';
 
 const MainCardWrapper = styled.div`
   display: flex;
@@ -34,13 +35,18 @@ const MainCardBody = styled.div`
   }
 `;
 
-export default function MainCard(props: any) {
+interface MainCardProps {
+  mainCard: ArticlesData;
+  onClick: () => void;
+}
+
+export default function MainCard({mainCard, onClick} : MainCardProps) {
   return (
-    <MainCardWrapper>
-      <MainCardImg alt="main-thumbnail" src={props.thumbnailImg} />
+    <MainCardWrapper onClick={onClick}>
+      <MainCardImg alt="main-thumbnail" src={mainCard.thumbnailImg} />
       <MainCardBody>
-        <h1>{props.title}</h1>
-        <p>{props.subTitle}</p>
+        <h1>{mainCard.title}</h1>
+        <p>{mainCard.subTitle}</p>
       </MainCardBody>
     </MainCardWrapper>
   );

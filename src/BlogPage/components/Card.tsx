@@ -51,11 +51,12 @@ const SmallTag = styled.div`
 interface CardProps {
   card: ArticlesData;
   isActive: boolean;
+  onClick: () => void;
 }
 
-export default function Card({ card, isActive }: CardProps) {
+export default function Card({ card, isActive, onClick }: CardProps) {
   return (
-    <CardWrapper $isActive={isActive}>
+    <CardWrapper $isActive={isActive} onClick={onClick}>
       <CardImg alt="card-img" src={card.thumbnailImg} />
       <CardBody>
         <h3>{card.title}</h3>
