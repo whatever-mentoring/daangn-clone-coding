@@ -5,3 +5,10 @@ export type ArticlesData = {
     subTitle: string;
     categories: string[];
 }
+
+export type DetailArticleData = {
+    title: string;
+    thumbnailImg: string;
+    createdAt: string;
+    content: string;
+}
